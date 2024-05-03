@@ -3,9 +3,10 @@
 # Remote library imports
 from flask import request
 from flask_restful import Resource
+from models import User
 
 # Local imports
-from config import app, db, api
+from config import api, db, request, make_response, abort, session
 
 class UserList(Resource):
   def get(self):
@@ -96,11 +97,6 @@ class Logout(Resource):
         return response     
     
 api.add_resource(Logout, '/api/logout')
-
-
-@app.route('/')
-def index():
-    return '<h1>Project Server</h1>'
 
 
 if __name__ == '__main__':
