@@ -6,7 +6,7 @@ from flask_restful import Resource
 from models import User
 
 # Local imports
-from config import api, db, request, make_response, abort, session
+from config import api, db, request, make_response, abort, session, jsonify
 
 class UserList(Resource):
   def get(self):
