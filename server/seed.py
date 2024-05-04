@@ -10,7 +10,7 @@ from models import db
 from models import User
 
 
-def seed():
+with app.app_context():
     # delete current data
     User.query.delete()
     db.session.commit()

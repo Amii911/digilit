@@ -1,6 +1,7 @@
 # Standard library imports
 
 # Remote library imports
+from flask import make_response, request, session
 from flask import request
 from flask_restful import Resource
 from models import User
