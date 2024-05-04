@@ -1,8 +1,16 @@
 import React from "react";
+import Home from "./Home/Home";
+
 
 
 function App() {
-  return <h1>Digilit</h1>;
+  return (
+    <div><h1>Digilit.ai</h1>
+    <Home/>
+    </div>
+  )
+
+
 }
 
 export default App;

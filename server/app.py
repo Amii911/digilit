@@ -6,30 +6,33 @@ from flask_restful import Resource
 from models import User
 
 # Local imports
-from config import api, db, request, make_response, abort, session, jsonify
+from config import api, db, app
 
-class UserList(Resource):
-  def get(self):
-          users = [user.to_dict() for user in User.query.all()]
-          return jsonify(users)
-      
-  def post(self):
-      form_json = request.get_json()
-      new_user = User(username=form_json['username'], birthday=form_json['birthday'])
-      
-      # Hashes password and saves it to _password_hash
-      new_user.password_hash = form_json['password']
+class Users(Resource):
+    def get(self):
+        users = [user.to_dict() for user in User.query.all()]
+        return make_response(users, 200)
 
-      db.session.add(new_user)
-      db.session.commit()
-      session['user_id'] = new_user.id
-      response = make_response(
-          new_user.to_dict(),
-          201
-      )
-      return response
-  
-api.add_resource(UserList, '/api/users', endpoint='users')
+api.add_resource(Users, '/users')
+    
+class UserResource(Resource):
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        return user.to_dict(), 200
+    
+api.add_resource(UserResource, '/users/<int:id>')
+
+# to store user
+class CheckSession(Resource):
+    def get(self):
+        try:
+            user = User.query.filter_by(id=session['user_id']).first()
+            response = make_response(user.to_dict(), 200)
+            return response
+        except:
+            return {"error": "Please log in"}, 401
+
+api.add_resource(CheckSession, '/check_session')
 
 class Login(Resource):
     def post(self):
@@ -48,7 +51,7 @@ class Login(Resource):
         except:
             abort(401, "Incorrect username or password")
 
-api.add_resource(Login, '/api/login')
+api.add_resource(Login, '/login')
 
 class Signup(Resource):
     def post(self):
@@ -74,7 +77,7 @@ class Signup(Resource):
         except:
             return {'error': '422 Unprocessable Entity'}, 422
 
-api.add_resource(Signup, '/api/signup')
+api.add_resource(Signup, '/signup')
 
 class AuthorizedSession(Resource):
     def get(self):
@@ -88,7 +91,7 @@ class AuthorizedSession(Resource):
         except:
             abort(401, "Unauthorized")
 
-api.add_resource(AuthorizedSession, '/api/authorized')
+api.add_resource(AuthorizedSession, '/authorized')
 
 class Logout(Resource):
     def delete(self):
@@ -96,7 +99,7 @@ class Logout(Resource):
         response = make_response('', 204)
         return response     
     
-api.add_resource(Logout, '/api/logout')
+api.add_resource(Logout, '/logout')
 
 
 if __name__ == '__main__':
