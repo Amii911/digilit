@@ -5,6 +5,8 @@ from flask import make_response, request, session
 from flask import request
 from flask_restful import Resource
 from models import User
+from flask_mail import Mail, Message 
+
 
 # Local imports
 from config import api, db, app
@@ -101,6 +103,19 @@ class Logout(Resource):
         return response     
     
 api.add_resource(Logout, '/logout')
+
+
+
+@app.route("/mail") 
+def index(): 
+   msg = Message( 
+                'Hello', 
+                sender ='yourId@gmail.com', 
+                recipients = ['receiver’sid@gmail.com'] 
+               ) 
+   msg.body = 'Hello'
+   mail.send(msg) 
+   return 'Sent'
 
 
 if __name__ == '__main__':
