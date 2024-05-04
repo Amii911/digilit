@@ -7,10 +7,7 @@ from models import User
 from flask_mail import Message 
 
 # Local imports
-from config import api, db, app
-
-# Initialize Flask-Mail
-mail = Mail(app)
+from config import api, db, app, mail
 
 class Users(Resource):
     def get(self):
