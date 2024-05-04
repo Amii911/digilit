@@ -3,7 +3,7 @@ import React from 'react'
 
 function Home() {
     return (
-        <div>
+        <div className="container"> {/* Add container class */}
             <h1>Digilit.ai</h1>
             <h2>Welcome to your digital friend. Created to educate and improve your digital literacy by focusing on the online safety aspect of digital literacy.</h2>
             <p>"Every 1 out 3 individuals in the world experience scams through email, text, call" - Digilit.ai</p>
@@ -12,7 +12,7 @@ function Home() {
                 <button>Log In</button>
             </div>
         </div>
-    )
-    }
+    );
+}
 
-export default Home
+export default Home;

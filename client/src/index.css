@@ -1,7 +1,43 @@
 :root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+  --bg: #282c34; 
+  --header: #fff; 
+  --link: #61dafb; 
+  --text: hsla(0, 0%, 100%, 0.88); 
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
 }
 
+h1,
+h2 {
+  color: var(--header);
+}
+
+button {
+  background-color: var(--link);
+  color: var(--header);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #5199e4; 
+}
+
+button:focus {
+  outline: none;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+}
