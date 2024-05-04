@@ -2,14 +2,15 @@
 
 # Remote library imports
 from flask import make_response, request, session
-from flask import request
 from flask_restful import Resource
 from models import User
-from flask_mail import Mail, Message 
-
+from flask_mail import Message 
 
 # Local imports
 from config import api, db, app
+
+# Initialize Flask-Mail
+mail = Mail(app)
 
 class Users(Resource):
     def get(self):
