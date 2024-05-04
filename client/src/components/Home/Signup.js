@@ -1,17 +1,12 @@
-import React from 'react'
+import React,{ useRef, useState, useEffect} from 'react'
 
 function Signup() {
+  const [user, setUser] = useState("")
+
+
   return (
     <div>
-      <form action="">
-        <h1>Sign Up</h1>
-        <div>
-          <input type= "text" placeholder="Username" required/>
-        </div>
-        <div>
-          <input type= "password" placeholder="Password" required/>
-        </div>
-      </form>
+
     </div>
   )
 }
